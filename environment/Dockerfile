@@ -4,6 +4,7 @@
 FROM node:20-slim@sha256:2cf067cfed83d5ea958367df9f966191a942351a2df77d6f0193e162b5febfc0
 
 # System packages, one consolidated apt transaction:
+#   - curl:            used by the verifier for gateway readiness checks.
 #   - openssl:         the gateway shells out to `openssl cms -verify`; also used
 #                      below to generate the signing keypairs at build time.
 #   - ca-certificates: HTTPS trust store.
@@ -19,6 +20,7 @@ RUN apt-get update \
         asciinema \
         build-essential \
         ca-certificates \
+        curl \
         openssl \
         python3 \
         python3-pip \
